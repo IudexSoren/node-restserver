@@ -5,6 +5,7 @@ const _ = require('underscore');
 const Usuario = require('../models/usuario');
 const { verificaToken, verificaAdminRol } = require('../middlewares/authentication');
 
+// Listar usuarios
 app.get('/usuario', verificaToken, function (req, res) {
   let desde = req.query.desde || 0;
   desde = Number(desde);
@@ -30,6 +31,7 @@ app.get('/usuario', verificaToken, function (req, res) {
   });
 });
 
+// Crear usuario
 app.post('/usuario', [verificaToken, verificaAdminRol], function (req, res) {
   let body = req.body;
   let usuario = new Usuario({
@@ -52,6 +54,7 @@ app.post('/usuario', [verificaToken, verificaAdminRol], function (req, res) {
   });
 });
 
+// Actualizar usuario
 app.put('/usuario/:id', [verificaToken, verificaAdminRol], function (req, res) {
   const id = req.params.id;
   let body = _.pick(req.body, ['nombre','email','img','role','estado']);
@@ -74,6 +77,7 @@ app.put('/usuario/:id', [verificaToken, verificaAdminRol], function (req, res) {
   });
 });
 
+// Eliminar usuario
 app.delete('/usuario/:id', [verificaToken, verificaAdminRol], function (req, res) {
   const estado = {estado: false};
   const id = req.params.id;
