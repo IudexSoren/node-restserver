@@ -9,7 +9,7 @@ var productoSchema = new Schema({
     },
     precioUni: {
         type: Number,
-        required: [true, 'El precio únitario es necesario']
+        required: [true, 'El precio unitario es necesario']
     },
     descripcion: {
         type: String,
@@ -28,6 +28,10 @@ var productoSchema = new Schema({
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario'
+    },
+    img: {
+        type: String,
+        required: false
     }
 });
 

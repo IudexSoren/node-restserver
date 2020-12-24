@@ -9,15 +9,24 @@
     <meta name="google-signin-client_id" content="602123857274-ccvgb5qberr3oc4db0edm8krtkvhvsmr.apps.googleusercontent.com" />
 </head>
 
-<body>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+<body style="
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    ">
+    <!-- <img src="http://localhost:3100/arch/usuarios/5fe3f55175720c3660348acc-218.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiZXN0YWRvIjp0cnVlLCJnb29nbGUiOmZhbHNlLCJfaWQiOiI1ZmUzZjU1MTc1NzIwYzM2NjAzNDhhY2MiLCJub21icmUiOiJQdXRhbmRvMiIsImVtYWlsIjoicHV0YW5kb2dzMkBnbWFpbC5jb20iLCJfX3YiOjB9LCJpYXQiOjE2MDg3NzcwNTgsImV4cCI6MTYwODk0OTg1OH0.pr8HOpphEK5fk5_wKH-dxYNTOy6Utbm10krLx8d2RzU"
+        class=""> -->
+    <div class="g-signin2" data-onsuccess="onSignIn" style="margin: 1rem 0"></div>
     <a href="#" onclick="signOut();">Sign out</a>
 
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function() {
-                console.log('User signed out.');
+                console.log("User signed out.");
             });
         }
     </script>
@@ -32,12 +41,15 @@
             var id_token = googleUser.getAuthResponse().id_token;
             console.log(id_token);
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/google-si');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.open("POST", "/google-si");
+            xhr.setRequestHeader(
+                "Content-Type",
+                "application/x-www-form-urlencoded"
+            );
             xhr.onload = function() {
-                console.log('Signed in as: ' + xhr.responseText);
+                console.log("Signed in as: " + xhr.responseText);
             };
-            xhr.send('idtoken=' + id_token);
+            xhr.send("idtoken=" + id_token);
         }
     </script>
 </body>
