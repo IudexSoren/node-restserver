@@ -83,8 +83,7 @@ app.put('/categoria/:id', [verificaToken, verificaAdminRol], (req, res) => {
   const id = req.params.id;
   const body = _.pick(req.body, ['descripcion']);
   const opts = {
-    new: true,
-    runValidators: true
+    new: true
   };
   Categoria.findByIdAndUpdate(id, body, opts,
   (err, categoriaDB) => {
